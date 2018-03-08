@@ -2,8 +2,8 @@
 This module lets you experience the POWER of FUNCTIONS and PARAMETERS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Zack Watson.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -12,8 +12,8 @@ def main():
     """ Calls the   TEST   functions in this module. """
     run_test_draw_circles()
     # Un-comment the next lines when you are ready to use them.
-    # run_test_better_draw_circles()
-    # run_test_even_better_draw_circles()
+    run_test_better_draw_circles()
+    run_test_even_better_draw_circles()
 
 
 # ----------------------------------------------------------------------
@@ -31,7 +31,7 @@ def run_test_draw_circles():
     """ Tests the   draw_circles   function. """
     # ------------------------------------------------------------------
     # Students:
-    #   Do NOT touch this function - it has no TODO in it.
+    #   Do NOT touch this function - it has no TO DO in it.
     # ------------------------------------------------------------------
     print()
     print('--------------------------------------------------')
@@ -64,7 +64,7 @@ def draw_circles():
     window.close_on_mouse_click()
 
 # ----------------------------------------------------------------------
-# TODO: 2.
+# DONE: 2.
 #   First, RUN this program.  You will see that draw_circles draws
 #   concentric circles whose radii vary by 10.
 #
@@ -94,8 +94,41 @@ def draw_circles():
 # ----------------------------------------------------------------------
 
 
+def run_test_better_draw_circles():
+    """ Tests the   better_draw_circles   function. """
+    print()
+    print('--------------------------------------------------')
+    print('Testing  better_draw_circles:  See graphics window')
+    print('--------------------------------------------------')
+
+    better_draw_circles(10)
+    better_draw_circles(7)
+    better_draw_circles(5)
+    better_draw_circles(3)
+
+
+def better_draw_circles(n):
+    """
+    Parameters: n represents the distance between each concentric circle.
+    -- Constructs a window whose width and height are both 400.
+    -- Constructs and draws 21 rg.Circle objects such that:
+         -- Each is centered at (200, 200)
+         -- They have radii:  0*n  1*n  2*n  3*n  4*n ... 20*n, respectively.
+         -- Pauses 0.05 seconds after rendering each.
+    -- Waits for the user to press the mouse, then closes the window.
+    """
+    window = rg.RoseWindow(400, 400)
+
+    center = rg.Point(200, 200)
+    for k in range(21):
+        circle = rg.Circle(center, n * k)
+        circle.attach_to(window)
+        window.render(0.05)
+
+    window.close_on_mouse_click()
+
 # ----------------------------------------------------------------------
-# TODO: 3.
+# DONE: 3.
 #   In the previous exercise, you made a MORE POWERFUL version
 #   of draw_circles by introducing a PARAMETER for the amount by
 #   which the radii of the concentric circles increase.
@@ -122,6 +155,47 @@ def draw_circles():
 #   In testing your even_better_draw_circles function,
 #   can you make some fun pictures?
 # ----------------------------------------------------------------------
+
+
+def run_test_even_better_draw_circles():
+    """ Tests the   even_better_draw_circles   function. """
+    print()
+    print('--------------------------------------------------')
+    print('Testing  better_draw_circles:  See graphics window')
+    print('--------------------------------------------------')
+
+    even_better_draw_circles(10, 21, rg.Point(200, 200), 'black', 0.05)
+    even_better_draw_circles(7, 17, rg.Point(100, 200), 'red', 1)
+    even_better_draw_circles(5, 10, rg.Point(100, 100), 'green', 2)
+    even_better_draw_circles(3, 29, rg.Point(250, 300), 'orange', 0.1)
+
+
+def even_better_draw_circles(n, m, cent, col, spd):
+    """
+    Parameters: n is an integer representing the distance between concentric circles
+                m is an integer representing the number of concentric circles
+                cent is a point representing the center of the concentric circles
+                col is a string representing the color of the concentric circles
+                spd is a number representing the speed at which the graphic runs
+    -- Constructs a window whose width and height are both 400.
+    -- Constructs and draws m rg.Circle objects such that:
+         -- Each is centered at the specified point
+         -- They have radii:  0*n  1*n  2*n  ... (m-1)*n, respectively.
+         -- Pauses spd seconds after rendering each.
+         -- The circle has an outline color of col (as a string)
+    -- Waits for the user to press the mouse, then closes the window.
+    """
+    window = rg.RoseWindow(400, 400)
+
+    center = cent
+    for k in range(m):
+        circle = rg.Circle(center, n * k)
+        circle.outline_color = col
+        circle.attach_to(window)
+        window.render(spd)
+
+    window.close_on_mouse_click()
+
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
